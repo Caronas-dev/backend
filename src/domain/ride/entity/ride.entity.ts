@@ -1,13 +1,6 @@
-import { InviteEntity } from 'domain/invite/entity/invite.entity';
-import { UserEntity } from 'domain/user/entity/user.entity';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { InviteEntity } from 'src/domain/invite/entity/invite.entity';
+import { UserEntity } from 'src/domain/user/entity/user.entity';
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'ride' })
 export class RideEntity {
