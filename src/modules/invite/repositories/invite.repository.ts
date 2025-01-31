@@ -1,17 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { InviteEntity } from '../../../domain/invite/entity/invite.entity';
+import { SendInviteDTO } from '../dtos/sendInvite.dto';
 
 @Injectable()
 export class InviteRepository {
   constructor(private readonly repository: Repository<InviteEntity>) {}
 
-  create(createInviteDto: any) {
-    const invite = this.repository.create(createInviteDto);
-    return this.repository.save(invite);
+  async findAll(where: FindOptionsWhere<InviteEntity>, step: number): Promise<InviteEntity[]> {
+    return await this.repository.find({ where, take: step });
   }
 
-  findOne(id: number) {
-    return this.repository.findOne({ where: { id } });
+  async create(sendInviteDTO: SendInviteDTO): Promise<InviteEntity> {
+    const invite = this.repository.create(sendInviteDTO);
+    return await this.repository.save(invite);
+  }
+
+  async findOne(id: number): Promise<InviteEntity | null> {
+    return await this.repository.findOne({ where: { id } });
   }
 }

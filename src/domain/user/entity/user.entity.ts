@@ -1,12 +1,6 @@
-import { InviteEntity } from 'domain/invite/entity/invite.entity';
-import { RideEntity } from 'domain/ride/entity/ride.entity';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { InviteEntity } from 'src/domain/invite/entity/invite.entity';
+import { RideEntity } from 'src/domain/ride/entity/ride.entity';
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'user' })
 export class UserEntity {
@@ -24,6 +18,12 @@ export class UserEntity {
 
   @Column({ name: 'password', type: 'varchar' })
   password: string;
+
+  @Column({ name: 'phone_number', type: 'varchar' })
+  phoneNumber: string;
+
+  @Column({ name: 'document', type: 'varchar' })
+  document: string;
 
   @Column({ name: 'birth_date', type: 'date' })
   birthDate: Date;

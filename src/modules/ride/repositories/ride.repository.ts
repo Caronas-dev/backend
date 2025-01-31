@@ -1,21 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { RideEntity } from '../../../domain/ride/entity/ride.entity';
+import { CreateRideDTO } from '../dtos/createRide.dto';
 
 @Injectable()
 export class RideRepository {
   constructor(private readonly repository: Repository<RideEntity>) {}
 
-  findAll() {
-    return this.repository.find();
+  async findAll(where: FindOptionsWhere<RideEntity>, step: number): Promise<RideEntity[]> {
+    return await this.repository.find({ where, take: step });
   }
 
-  create(createRideDto: any) {
-    const ride = this.repository.create(createRideDto);
-    return this.repository.save(ride);
+  async create(createRideDto: CreateRideDTO, driverId: number): Promise<RideEntity> {
+    const ride = this.repository.create({ driverId, ...createRideDto });
+    return await this.repository.save(ride);
   }
 
-  findOne(id: number) {
-    return this.repository.findOne({ where: { id } });
+  async findOne(id: number): Promise<RideEntity | null> {
+    return await this.repository.findOne({ where: { id } });
   }
 }
