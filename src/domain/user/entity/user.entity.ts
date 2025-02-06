@@ -4,7 +4,7 @@ import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 't
 
 @Entity({ name: 'user' })
 export class UserEntity {
-  @PrimaryGeneratedColumn({ name: 'id', type: 'number' })
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ name: 'name', type: 'varchar' })
