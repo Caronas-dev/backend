@@ -4,10 +4,10 @@ import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColum
 
 @Entity({ name: 'ride' })
 export class RideEntity {
-  @PrimaryGeneratedColumn({ name: 'id', type: 'number' })
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ name: 'driver_id', type: 'number' })
+  @Column({ name: 'driver_id', type: 'integer' })
   driverId: number;
 
   @Column({ name: 'origin', type: 'varchar' })
@@ -22,10 +22,10 @@ export class RideEntity {
   @Column({ name: 'estimated_time', type: 'varchar' })
   estimatedTime: string;
 
-  @Column({ name: 'seats', type: 'number' })
+  @Column({ name: 'seats', type: 'integer' })
   seats: number;
 
-  @Column({ name: 'free_seats', type: 'number' })
+  @Column({ name: 'free_seats', type: 'integer' })
   freeSeats: number;
 
   @Column({ name: 'status', type: 'varchar' })

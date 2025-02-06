@@ -1,16 +1,16 @@
-import { RideEntity } from 'domain/ride/entity/ride.entity';
-import { UserEntity } from 'domain/user/entity/user.entity';
+import { RideEntity } from 'src/domain/ride/entity/ride.entity';
+import { UserEntity } from 'src/domain/user/entity/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'invite' })
 export class InviteEntity {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ name: 'ride_id', type: 'number' })
+  @Column({ name: 'ride_id', type: 'integer' })
   rideId: number;
 
-  @Column({ name: 'user_id', type: 'number' })
+  @Column({ name: 'user_id', type: 'integer' })
   userId: number;
 
   @Column({ name: 'status', type: 'varchar' })

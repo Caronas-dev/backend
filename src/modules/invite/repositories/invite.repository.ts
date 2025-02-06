@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { FindOptionsWhere, Repository } from 'typeorm';
 import { InviteEntity } from '../../../domain/invite/entity/invite.entity';
 import { SendInviteDTO } from '../dtos/sendInvite.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class InviteRepository {
-  constructor(private readonly repository: Repository<InviteEntity>) {}
+  constructor(@InjectRepository(InviteEntity) private readonly repository: Repository<InviteEntity>) {}
 
   async findAll(where: FindOptionsWhere<InviteEntity>, step: number): Promise<InviteEntity[]> {
     return await this.repository.find({ where, take: step });
