@@ -14,7 +14,7 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<any> {
     this.logger.log(`Validating user with email: ${email}`);
-    const user = await this.userService.findByEmail(email);
+    const user = await this.userService.findOneByEmail(email);
 
     if (user && (await bcrypt.compare(password, user.password))) {
       this.logger.log(`User ${email} validated successfully`);

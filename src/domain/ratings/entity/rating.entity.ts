@@ -1,20 +1,12 @@
-import { UserEntity } from 'domain/user/entity/user.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  ManyToOne,
-  PrimaryColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { UserEntity } from 'src/domain/user/entity/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'rating' })
 export class RatingEntity {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ name: 'rating', type: 'number' })
+  @Column({ name: 'rating', type: 'integer' })
   rating: number;
 
   @Column({ name: 'comment', type: 'text' })

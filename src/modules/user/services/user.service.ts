@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserRepository } from '../repositories/user.repository';
 import { UserEntity } from 'src/domain/user/entity/user.entity';
 
@@ -18,7 +18,7 @@ export class UserService {
     return await this.userRepository.findOne(id);
   }
 
-  async findByEmail(email: string): Promise<UserEntity | null> {
-    return await this.userRepository.findByEmail(email);
+  async findOneByEmail(email: string): Promise<UserEntity | null> {
+    return await this.userRepository.findOneByEmail(email);
   }
 }
