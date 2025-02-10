@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './services/auth.service';
-import { AuthController } from './controllers/auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from 'src/domain/user/entity/user.entity';
@@ -15,6 +14,7 @@ import { UserRepository } from '../user/repositories/user.repository';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
+    UserEntity,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, UserService, UserRepository],
